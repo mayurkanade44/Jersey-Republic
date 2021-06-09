@@ -1,7 +1,13 @@
 import React from "react";
 
 const Loading = () => {
-  return <h4>loading element</h4>;
+  return (
+    <div className="text-center m-5">
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  );
 };
 
 export default Loading;

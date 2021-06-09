@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "../css/featured.css";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import { useProductsContext } from "./Products_context";
-import Loading from './Loading'
-import Error from './Error'
+import Loading from "./Loading";
+import Error from "./Error";
 
 const Featured = () => {
   const { productsError, loading, featuredProducts } = useProductsContext();
@@ -29,9 +29,10 @@ const Featured = () => {
     };
   }, [index]);
   if (loading) {
-      return <Loading/>
-  } if (productsError) {
-      return <Error/>
+    return <Loading />;
+  }
+  if (productsError) {
+    return <Error />;
   }
 
   return (
@@ -53,8 +54,9 @@ const Featured = () => {
 
           return (
             <article className={position} key={id}>
-              <img src={image} alt={name} className="person-img" />
-              <Link to={`/products/${id}`} />
+              <Link to={`/products/${id}`}>
+                <img src={image} alt={name} className="person-img" />
+              </Link>
               <h4>{name}</h4>
             </article>
           );

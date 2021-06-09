@@ -1,0 +1,40 @@
+h1,
+h2,
+h3,
+h4,
+h5 {
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+
+h2 {
+  color: black;
+  font-weight: 700;
+}
+h5 {
+  color: yellow;
+}
+
+.product-center {
+  display: grid;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.desc {
+  line-height: 2;
+  max-width: 45em;
+}
+
+.info {
+  text-transform: capitalize;
+  width: 300px;
+  display: grid;
+  grid-template-columns: 125px 1fr;
+}
+
+.info span{
+  color: black;
+  font-weight: 700;
+}

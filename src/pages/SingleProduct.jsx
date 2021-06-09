@@ -26,24 +26,28 @@ const SingleProduct = () => {
   return (
     <div className="page">
       <div className="container">
-            <Link to="/products" className="btn btn-dark mt-3">
-              Back To Products
-            </Link>
+        <Link to="/products" className="btn btn-dark mt-3">
+          Back To Products
+        </Link>
         <div className="row">
           <div className="col-lg-6">
             <div className="product-center">
               <ProductImages images={images} />
             </div>
           </div>
-            <div className="col-lg-6 pt-4">
-              <h2>{name}</h2>
-              <h5 className="price">{price}</h5>
-              <p className='desc'>{description}</p>
-              <p className='info'>
-                <span>Brand : </span>
-                {company}
-              </p>
-            </div>
+          <div className="col-lg-6 pt-4">
+            <h2 className="my-4">{name}</h2>
+            <h5 className="price my-4">{price}</h5>
+            <p className="desc my-4">{description}</p>
+            <p className="info">
+              <span>League : </span>
+              {company}
+            </p>
+            <p className="info">
+              <span>Brand : </span>
+              {company}
+            </p>
+          </div>
         </div>
       </div>
     </div>

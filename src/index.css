@@ -75,6 +75,14 @@ a {
   width: 100%;
 }
 
+.price {
+  color: yellow;
+}
+
+.btn-grid {
+  padding: 0px 4px 3px;
+}
+
 /*============ FOOTER ============*/
 
 footer {
@@ -88,5 +96,15 @@ footer {
 @media (max-width: 992px) {
   .mobile-nav {
     padding: 0.8rem 1px;
+  }
+  .mobile-sort {
+    text-align: left;
+    margin: 0;
+    padding: 10px 0;
+  }
+  .mobile-select {
+    display: flex;
+    justify-content: left !important;
+
   }
 }

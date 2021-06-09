@@ -12,6 +12,8 @@ export const ProductsProvider = ({ children }) => {
   const [singleError, setSingleError] = useState(false);
   const [singleProduct, setSingleProduct] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [gridView, setGridView] = useState(true);
+  const [sort, setSort] = useState("");
 
   const fetchProducts = async (url) => {
     setLoading(true);
@@ -43,6 +45,36 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
+  const updateSort = (e) => {
+    const value = e.target.value;
+    setSort(value);
+  };
+
+  const sortProducts = () => {
+    let tempProducts = [...filteredProducts];
+    if (sort === "name-a") {
+      tempProducts = tempProducts.sort((a, b) => {
+        return a.name.localeCompare(b.name);
+      });
+    }
+    if (sort === "name-z") {
+      tempProducts = tempProducts.sort((a, b) => {
+        return b.name.localeCompare(a.name);
+      });
+    }
+    if (sort === "price-high") {
+      tempProducts = tempProducts.sort((a, b) => b.price - a.price);
+    }
+    if (sort === "price-low") {
+      tempProducts = tempProducts.sort((a, b) => a.price - b.price);
+    }
+    return setFilteredProducts(tempProducts);
+  };
+
+  useEffect(() => {
+    sortProducts();
+  }, [sort]);
+
   useEffect(() => {
     fetchProducts(url);
   }, []);
@@ -57,6 +89,12 @@ export const ProductsProvider = ({ children }) => {
         singleProduct,
         singleError,
         singleLoading,
+        filteredProducts,
+        products,
+        gridView,
+        setGridView,
+        updateSort,
+        sort,
       }}
     >
       {children}

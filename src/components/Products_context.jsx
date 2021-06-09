@@ -14,6 +14,12 @@ export const ProductsProvider = ({ children }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [gridView, setGridView] = useState(true);
   const [sort, setSort] = useState("");
+  const [filters, setFilters] = useState({
+    text: "",
+    company: "all",
+    category: "all",
+    color: "all",
+  });
 
   const fetchProducts = async (url) => {
     setLoading(true);

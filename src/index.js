@@ -8,11 +8,9 @@ import reportWebVitals from "./reportWebVitals";
 import { ProductsProvider } from "./components/Products_context";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ProductsProvider>
-      <App />
-    </ProductsProvider>
-  </React.StrictMode>,
+  <ProductsProvider>
+    <App />
+  </ProductsProvider>,
   document.getElementById("root")
 );
 

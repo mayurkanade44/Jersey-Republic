@@ -12,13 +12,12 @@ export const ProductsProvider = ({ children }) => {
   const [singleError, setSingleError] = useState(false);
   const [singleProduct, setSingleProduct] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [sort, setSort] = useState("price");
   const [gridView, setGridView] = useState(true);
-  const [sort, setSort] = useState("");
   const [filters, setFilters] = useState({
     text: "",
     company: "all",
     category: "all",
-    color: "all",
   });
 
   const fetchProducts = async (url) => {
@@ -28,7 +27,6 @@ export const ProductsProvider = ({ children }) => {
       const data = await resp.json();
       const featured = data.filter((product) => product.featured === true);
       setProducts(data);
-      setFilteredProducts(data);
       setFeaturedProducts(featured);
       setLoading(false);
     } catch (error) {
@@ -56,8 +54,18 @@ export const ProductsProvider = ({ children }) => {
     setSort(value);
   };
 
-  const sortProducts = () => {
-    let tempProducts = [...filteredProducts];
+  const updateFilters = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    if (name === "category") {
+      value = e.target.textContent;
+    }
+    setFilters({ ...filters, [name]: value });
+  };
+
+  const sortFilterProducts = () => {
+    let tempProducts = [...products];
+    const { text, category, company } = filters;
     if (sort === "name-a") {
       tempProducts = tempProducts.sort((a, b) => {
         return a.name.localeCompare(b.name);
@@ -74,16 +82,35 @@ export const ProductsProvider = ({ children }) => {
     if (sort === "price-low") {
       tempProducts = tempProducts.sort((a, b) => a.price - b.price);
     }
-    return setFilteredProducts(tempProducts);
+    if (text) {
+      tempProducts = tempProducts.filter((product) => {
+        return product.name.toLowerCase().startsWith(text);
+      });
+    }
+    if (category !== "all") {
+      tempProducts = tempProducts.filter(
+        (product) => product.category === category
+      );
+    }
+    if (company !== "all") {
+      tempProducts = tempProducts.filter(
+        (product) => product.company === company
+      );
+    }
+    setFilteredProducts(tempProducts);
   };
 
-  useEffect(() => {
-    sortProducts();
-  }, [sort]);
+  const clearFilters = () => {
+    setFilters({ text: "", company: "all", category: "all" });
+  };
 
   useEffect(() => {
     fetchProducts(url);
   }, []);
+
+  useEffect(() => {
+    sortFilterProducts();
+  }, [products, filters, sort]);
 
   return (
     <ProdcutsContext.Provider
@@ -95,12 +122,14 @@ export const ProductsProvider = ({ children }) => {
         singleProduct,
         singleError,
         singleLoading,
-        filteredProducts,
         products,
         gridView,
         setGridView,
+        filters,
         updateSort,
-        sort,
+        updateFilters,
+        filteredProducts,
+        clearFilters,
       }}
     >
       {children}

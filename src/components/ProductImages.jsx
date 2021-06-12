@@ -4,7 +4,7 @@ const ProductImages = ({ images = [{ url: "" }] }) => {
   const [main, setMain] = useState(images[0]);
   return (
     <div>
-      <img src={main.url} alt="main" className="img-fluid main-img" />
+      <img src={main.url} alt="main" className="img-fluid" />
       <div className="pt-2">
         <div className="row gx-1">
           {images.map((image, index) => {

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const ListView = ({ products }) => {
   return (
-    <div className="container">
-      <div className="row gy-4 m-2">
+    <div className="container mb-3">
+      <div className="row gy-4 ">
         {products.map((product) => {
           const { id, name, price, image, description } = product;
           return (
@@ -12,14 +12,14 @@ const ListView = ({ products }) => {
               <div className="col-lg-5">
                 <img
                   className="p-1 bg-dark img-fluid"
-                  style={{ height: 255, width: 400 }}
+                  style={{ height: 270, width: 400 }}
                   src={image}
                   alt={name}
                 />
               </div>
               <div className="col-lg-7 p-3">
                 <h2>{name}</h2>
-                <p className="price">{price}</p>
+                <p className="price">₹{price}</p>
                 <p>{description.substring(0, 150)}...</p>
                 <Link className="btn btn-dark" to={`/products/${id}`}>
                   Details

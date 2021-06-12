@@ -12,7 +12,7 @@ export const ProductsProvider = ({ children }) => {
   const [singleError, setSingleError] = useState(false);
   const [singleProduct, setSingleProduct] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [sort, setSort] = useState("price");
+  const [sort, setSort] = useState("name-a");
   const [gridView, setGridView] = useState(true);
   const [filters, setFilters] = useState({
     text: "",
@@ -41,7 +41,7 @@ export const ProductsProvider = ({ children }) => {
     try {
       const resp = await fetch(url);
       const data = await resp.json();
-      setSingleProduct(data);
+      setSingleProduct(data.fields);
       setSingleLoading(false);
     } catch (error) {
       setSingleLoading(false);

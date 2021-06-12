@@ -32,7 +32,7 @@ const Filters = () => {
       </form>
       {/* categories */}
       <div className="my-3">
-        <h5>Category</h5>
+        <h5>Leagues</h5>
         {categories.map((c, index) => {
           return (
             <button

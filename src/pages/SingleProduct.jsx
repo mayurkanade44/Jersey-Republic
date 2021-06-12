@@ -22,7 +22,7 @@ const SingleProduct = () => {
   if (singleError) {
     return <Error />;
   }
-  const { name, price, description, images, company } = singleProduct;
+  const { name, price, description, images, company, category } = singleProduct;
   return (
     <div className="page">
       <div className="container">
@@ -37,11 +37,11 @@ const SingleProduct = () => {
           </div>
           <div className="col-lg-6 pt-4">
             <h2 className="my-4">{name}</h2>
-            <h5 className="price my-4">{price}</h5>
+            <h5 className="price my-4">₹{price}</h5>
             <p className="desc my-4">{description}</p>
             <p className="info">
               <span>League : </span>
-              {company}
+              {category}
             </p>
             <p className="info">
               <span>Brand : </span>

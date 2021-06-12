@@ -90,6 +90,29 @@ a {
   font-weight: 500;
 }
 
+.row-teams {
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  padding: 20px;
+}
+
+.row-teams::-webkit-scrollbar {
+  display: none;
+}
+
+.row-team {
+  max-height: 250px;
+  object-fit: contain;
+  margin-right: 10px;
+  transition: transform 400ms;
+}
+
+.row-team:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
 /*============ FOOTER ============*/
 
 footer {

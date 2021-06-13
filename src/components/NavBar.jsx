@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../images/logo512.png";
-import whatsapp from "../images/whatsapp.png";
-import { links } from "../utils/links";
+import { links, media } from "../utils/links";
 
 const NavBar = () => {
   return (
@@ -37,13 +36,22 @@ const NavBar = () => {
                 );
               })}
             </ul>
-            <ul className='navbar-nav whatsapp'>
+            <ul className="navbar-nav">
               <li>
-                <img
-                  className="navbar-whatsapp"
-                  src={whatsapp}
-                  alt="whatsapp"
-                />123456789
+                {media.slice(0, 2).map((m) => {
+                  return (
+                    <Link
+                    className='mx-3 mobile-nav-logo'
+                      key={m.id}
+                      to={{
+                        pathname: m.link,
+                      }}
+                      target="_blank"
+                    >
+                      <img src={m.img} alt={m.name} style={{ height: 39 }} />
+                    </Link>
+                  );
+                })}
               </li>
             </ul>
           </div>

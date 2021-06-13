@@ -19,58 +19,64 @@ const Filters = () => {
 
   return (
     <div className="container mt-5 pt-2">
-      {/* search input */}
-      <form onSubmit={(e) => e.preventDefault()}>
-        <input
-          type="text"
-          name="text"
-          placeholder="Search"
-          className="form-control form-control-sm"
-          value={text}
-          onChange={updateFilters}
-        ></input>
-      </form>
-      {/* categories */}
-      <div className="my-3">
-        <h5>Leagues</h5>
-        {categories.map((c, index) => {
-          return (
-            <button
-              key={index}
-              name="category"
-              className={`d-block btn ${
-                category === c.toLowerCase() ? "border-bottom" : null
-              } category-btn`}
-              onClick={updateFilters}
-            >
-              {c}
-            </button>
-          );
-        })}
-      </div>
-      {/* companies */}
-      <div className="my-3">
-        <h5>Companies</h5>
-        <select
-          className="form-select form-select-sm"
-          name="company"
-          value={company}
-          onChange={updateFilters}
-        >
-          {companies.map((c, index) => {
+      <div className="position-fixed mobile-filter">
+        {/* search input */}
+        <form onSubmit={(e) => e.preventDefault()}>
+          <input
+            type="text"
+            name="text"
+            placeholder="Search"
+            className="form-control form-control-sm"
+            value={text}
+            onChange={updateFilters}
+          ></input>
+        </form>
+        {/* categories */}
+        <div className="my-3">
+          <h5>Leagues</h5>
+          {categories.map((c, index) => {
             return (
-              <option key={index} value={c}>
+              <button
+                key={index}
+                name="category"
+                className={`d-block btn ${
+                  category === c ? "border-bottom" : null
+                } category-btn`}
+                onClick={updateFilters}
+              >
                 {c}
-              </option>
+              </button>
             );
           })}
-        </select>
-      </div>
-      {/* clear all */}
-      <div className="my-3">
-        <button type="button" className="btn btn-danger" onClick={clearFilters}>
-          Clear All
-        </button>
+        </div>
+        {/* companies */}
+        <div className="my-3">
+          <h5>Companies</h5>
+          <select
+            className="form-select form-select-sm"
+            name="company"
+            value={company}
+            onChange={updateFilters}
+          >
+            {companies.map((c, index) => {
+              return (
+                <option key={index} value={c}>
+                  {c}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        {/* clear all */}
+        <div className="my-3">
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={clearFilters}
+          >
+            Clear All
+          </button>
+        </div>
       </div>
     </div>
   );

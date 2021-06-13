@@ -4,22 +4,25 @@ const ProductImages = ({ images = [{ url: "" }] }) => {
   const [main, setMain] = useState(images[0]);
   return (
     <div>
-      <img src={main.url} alt="main" className="img-fluid" />
-      <div className="pt-2">
-        <div className="row gx-1">
-          {images.map((image, index) => {
-            return (
-              <div className="col" key={index}>
+      <div className="row mb-3">
+        <div className="col-3">
+          <div className="row gx-0">
+            {images.map((image, index) => {
+              return (
                 <img
-                  className="border img-fluid"
-                  style={{ height: 100, width: 200 }}
+                  key={index}
+                  className="border border-dark border-3"
+                  style={{ height: 132 }}
                   src={image.url}
                   alt="name"
                   onClick={() => setMain(images[index])}
                 ></img>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+        </div>
+        <div className="col-9">
+          <img src={main.url} alt="main" style={{height:528}} className="img-fluid" />
         </div>
       </div>
     </div>

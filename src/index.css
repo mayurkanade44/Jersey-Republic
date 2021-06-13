@@ -34,6 +34,7 @@ a {
   letter-spacing: 0.1rem;
 }
 
+
 .navbar-nav .nav-link:hover {
   color: #1ebba3;
 }
@@ -90,11 +91,22 @@ a {
   font-weight: 500;
 }
 
+.container-carousel {
+  padding: 0 4rem 0 7rem;
+}
+
+.heading-underline {
+  width: 11rem;
+  height: 0.2rem;
+  background-color: #1ebba3;
+  margin: 0 auto 2.5rem;
+}
+
 .row-teams {
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
-  padding: 20px;
+  padding: 4px 15px 15px;
 }
 
 .row-teams::-webkit-scrollbar {
@@ -135,5 +147,28 @@ footer {
   .mobile-select {
     display: flex;
     justify-content: left !important;
+  }
+
+  .container-carousel {
+    padding: 0;
+  }
+
+  .mobile-col {
+    width: 15%;
+    height: 60px;
+  }
+
+  .mobile-filter {
+    position: relative !important;
+  }
+
+  .mobile-nav-logo {
+    margin: 0 18px 0 0 !important;
+  }
+
+  .mobile-logo {
+    width: 35px;
+    height: 60px !important;
+    padding: 0.8rem 1px;
   }
 }

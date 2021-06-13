@@ -58,7 +58,7 @@ export const ProductsProvider = ({ children }) => {
     let name = e.target.name;
     let value = e.target.value;
     if (name === "category") {
-      value = e.target.textContent;
+      value = e.target.textContent ;
     }
     setFilters({ ...filters, [name]: value });
   };

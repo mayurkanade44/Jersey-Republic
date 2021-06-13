@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useProductsContext } from "./Products_context";
 import { Link } from "react-router-dom";
 
@@ -10,9 +10,15 @@ const Row = ({ title }) => {
   return (
     <div className="container">
       <Link to="/products">
-        {/* <button name="category" onClick={updateFilters}>
-        </button> */}
-        <h2>{title}</h2>
+        <button
+          className="btn bg-transparent"
+          style={{ fontSize: 30, fontWeight: 600 }}
+          name="category"
+          value={title}
+          onClick={updateFilters}
+        >
+          {title}
+        </button>
       </Link>
       <div className="row-teams">
         {league.map((team) => {

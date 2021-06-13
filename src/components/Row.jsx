@@ -20,12 +20,17 @@ const Row = ({ title }) => {
           {title}
         </button>
       </Link>
-      <div className="row-teams">
-        {league.map((team) => {
-          const { id, image } = team;
+      <div className="row-teams ">
+        {league.slice(0,5).map((team) => {
+          const { id, image, name } = team;
           return (
             <Link to={`/products/${id}`}>
-              <img key={id} className="row-team" src={image} alt="name" />
+              <img
+                key={id}
+                className="row-team row-mobile"
+                src={image}
+                alt={name}
+              />
             </Link>
           );
         })}

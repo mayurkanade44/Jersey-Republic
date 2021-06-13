@@ -38,16 +38,16 @@ const Featured = () => {
   return (
     <section className="container">
       <div className="section-center">
-        {featuredProducts.map((person, personIndex) => {
-          const { id, image, name } = person;
+        {featuredProducts.map((product, productIndex) => {
+          const { id, image, name } = product;
 
           let position = "nextSlide";
-          if (personIndex === index) {
+          if (productIndex === index) {
             position = "activeSlide";
           }
           if (
-            personIndex === index - 1 ||
-            (index === 0 && personIndex === featuredProducts.length - 1)
+            productIndex === index - 1 ||
+            (index === 0 && productIndex === featuredProducts.length - 1)
           ) {
             position = "lastSlide";
           }
@@ -55,7 +55,7 @@ const Featured = () => {
           return (
             <article className={position} key={id}>
               <Link to={`/products/${id}`}>
-                <img src={image} alt={name} className="person-img" />
+                <img src={image} alt={name} className="jersey-main-img" />
               </Link>
               <h4>{name}</h4>
             </article>

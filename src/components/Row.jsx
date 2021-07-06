@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Row = ({ title }) => {
   const { products, updateFilters } = useProductsContext();
   const league = products.filter((product) => product.category === title);
-  console.log(league);
 
   return (
     <div className="container">
@@ -24,13 +23,8 @@ const Row = ({ title }) => {
         {league.slice(0,5).map((team) => {
           const { id, image, name } = team;
           return (
-            <Link to={`/products/${id}`}>
-              <img
-                key={id}
-                className="row-team row-mobile"
-                src={image}
-                alt={name}
-              />
+            <Link key={id} to={`/products/${id}`}>
+              <img className="row-team row-mobile" src={image} alt={name} />
             </Link>
           );
         })}

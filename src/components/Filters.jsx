@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useProductsContext } from "./Products_context";
 
 const Filters = () => {
+  const [size, setSize] = useState(window.innerWidth);
   const {
-    filters: { text, category, company },
+    filters: { text, category, company, mcategory },
     updateFilters,
     clearFilters,
     products,
@@ -14,7 +15,17 @@ const Filters = () => {
     return ["all", ...new Set(unique)];
   };
 
+  const check = () => {
+    setSize(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', check)
+  },[]);
+
+
   const categories = getUniqueValue(products, "category");
+  const mcategories = getUniqueValue(products, "category");
   const companies = getUniqueValue(products, "company");
 
   return (
@@ -31,24 +42,44 @@ const Filters = () => {
             onChange={updateFilters}
           ></input>
         </form>
-        {/* categories */}
-        <div className="my-3">
-          <h5>Leagues</h5>
-          {categories.map((c, index) => {
-            return (
-              <button
-                key={index}
-                name="category"
-                className={`d-block btn ${
-                  category === c ? "border-bottom" : null
-                } category-btn`}
-                onClick={updateFilters}
-              >
-                {c}
-              </button>
-            );
-          })}
-        </div>
+        {size < 992 ? (
+          <div className="my-3">
+            <h5>Leagues</h5>
+            <select
+              className="form-select form-select-sm"
+              name="mcategory"
+              value={mcategory}
+              onChange={updateFilters}
+            >
+              {mcategories.map((c, index) => {
+                return (
+                  <option key={index} value={c}>
+                    {c}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+        ) : (
+          <div className="my-3">
+            <h5>Leagues</h5>
+            {categories.map((c, index) => {
+              return (
+                <button
+                  key={index}
+                  name="category"
+                  className={`d-block btn ${
+                    category === c ? "border-bottom" : null
+                  } category-btn`}
+                  onClick={updateFilters}
+                >
+                  {c}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
         {/* companies */}
         <div className="my-3">
           <h5>Companies</h5>

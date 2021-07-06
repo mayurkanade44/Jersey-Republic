@@ -18,6 +18,7 @@ export const ProductsProvider = ({ children }) => {
     text: "",
     company: "all",
     category: "all",
+    mcategory: "all",
   });
 
   const fetchProducts = async (url) => {
@@ -58,14 +59,14 @@ export const ProductsProvider = ({ children }) => {
     let name = e.target.name;
     let value = e.target.value;
     if (name === "category") {
-      value = e.target.textContent ;
+      value = e.target.textContent;
     }
     setFilters({ ...filters, [name]: value });
   };
 
   const sortFilterProducts = () => {
     let tempProducts = [...products];
-    const { text, category, company } = filters;
+    const { text, category, company, mcategory } = filters;
     if (sort === "name-a") {
       tempProducts = tempProducts.sort((a, b) => {
         return a.name.localeCompare(b.name);
@@ -92,6 +93,11 @@ export const ProductsProvider = ({ children }) => {
         (product) => product.category === category
       );
     }
+    if (mcategory !== "all") {
+      tempProducts = tempProducts.filter(
+        (product) => product.category === mcategory
+      );
+    }
     if (company !== "all") {
       tempProducts = tempProducts.filter(
         (product) => product.company === company
@@ -101,7 +107,7 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const clearFilters = () => {
-    setFilters({ text: "", company: "all", category: "all" });
+    setFilters({ text: "", company: "all", category: "all", mcategory: "all" });
   };
 
   useEffect(() => {
@@ -110,6 +116,7 @@ export const ProductsProvider = ({ children }) => {
 
   useEffect(() => {
     sortFilterProducts();
+    // eslint-disable-next-line
   }, [products, filters, sort]);
 
   return (
